@@ -39,6 +39,8 @@ export interface MethodsProducts {
      */
     getAllProducts(): Promise<IProducts[]>
 
+    findUnique(name: string): Promise<IProducts | null>
+
     /**
      * Método para excluir um produto.
      * @method

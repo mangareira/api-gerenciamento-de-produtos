@@ -30,8 +30,11 @@ export class ProductsUseCase {
         if(!data.price || data.price < 0) throw new HttpErros(400, "Price is required or must have a positive value")
         if(!data.quantity || data.quantity < 0) throw new HttpErros(400, "Quantity is required or must have a positive value")
         if((data.description?.length ?? 0) >= 500) throw new HttpErros(400, "Limit of caracter is 500")
+        const isExists = await this.productsRepository.findUnique(data.name)
+        if(isExists != null) throw new HttpErros(400, "Product exists") 
         const create = await this.productsRepository.create(data)
         return create
+
     }
 
     /**

@@ -24,5 +24,8 @@ export function httpErrorMiddleware(err: HttpErros, req: Request, res: Response,
     const message: string = err.message ?? "Internal error server"
 
     // Envia a resposta com o status e a mensagem do erro
-    res.status(status).json(message) 
+    res.status(status).json({
+        status,
+        message,
+      }) 
 }
